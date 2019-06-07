@@ -1,5 +1,8 @@
 {
   "name": "comp",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
   "type": "angular"
 }
