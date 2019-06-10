@@ -11,7 +11,7 @@
       <ion-col size-md="6" offset-md="3">
           <ion-list>
               <ion-item>
-                <ion-label position="floating"> Name(Family Head)</ion-label>
+                <ion-label > Name(Family Head)</ion-label>
                 <ion-input type="name" ngModel  required #emailCtrl="ngModel"></ion-input>
               </ion-item>
               <ion-item *ngIf="!emailCtrl.valid && emailCtrl.touched" lines="none">

@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>reg</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+          <ion-col size-md="6" offset-md="3">
+              <ion-list>
+                  <ion-item>
+                    <ion-label > Name: </ion-label>
+                    <ion-input type="name" ngModel  required #emailCtrl="ngModel"></ion-input>
+                  </ion-item>
+                  <ion-item *ngIf="!emailCtrl.valid && emailCtrl.touched" lines="none">
+                      <ion-icon name="alert" color="danger"></ion-icon>
+                      <span class="text"> Please Enter name</span> <!--for side allingment-->
+                  </ion-item>
+
+                  <ion-item>
+                      <ion-label position="floating">Aadhaar Number:</ion-label>
+                      <ion-input type="number" ngModel name="password" required minlength="12" maxlength="12" #passwordCtrl="ngModel"></ion-input></ion-item>
+                      <ion-item *ngIf="!passwordCtrl.valid && passwordCtrl.touched" lines="none">
+                          <ion-icon name="alert" color="danger"></ion-icon>
+                          <span class="text">Enter valid Aadhaar number</span> <!--for side allingment-->
+                 </ion-item>
+
+                  <ion-item>
+                      <ion-label position="floating">Number:</ion-label>
+                      <ion-input type="number" ngModel name="org" minlength="10" maxlength="10" #orgCtrl="ngModel"></ion-input></ion-item>
+                      <ion-item *ngIf="!orgCtrl.valid && orgCtrl.touched" lines="none">
+                          <ion-icon name="alert" color="danger"></ion-icon>
+                          <span class="text">Enter valid Number</span> <!--for side allingment-->
+                 </ion-item>
+
+                 <ion-item>
+                    <ion-label position="floating">Password:</ion-label>
+                    <ion-input type="password" ngModel name="paassword" required minlength="6" #paasswordCtrl="ngModel"></ion-input></ion-item>
+                    <ion-item *ngIf="!paasswordCtrl.valid && paasswordCtrl.touched" lines="none">
+                        <ion-icon name="alert" color="danger"></ion-icon>
+                        <span class="text">Enter Password</span> <!--for side allingment-->
+               </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+    
+        <ion-row>
+            <ion-col size-md="6" offset-md="3">
+                <div text-center>
+                    <ion-button type="submit" (click)="onLog()" *ngIf="!isLoading" [disabled]="!g.valid">Register</ion-button>
+                  </div>
+            </ion-col>
+        </ion-row>
+      </ion-grid>
+
+</ion-content>

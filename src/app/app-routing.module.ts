@@ -11,7 +11,8 @@ const routes: Routes = [
  // { path: 'reg.mhw', loadChildren: './reg.mhw/reg.mhw.module#Reg.MhwPageModule' },
   // { path: 'reg.family', loadChildren: './reg.family/reg.family.module#RegFamilyPageModule' },
   { path: 'regfamily', loadChildren: './regfamily/regfamily.module#RegfamilyPageModule' },
-  { path: 'reg-family-member', loadChildren: './reg-family-member/reg-family-member.module#RegFamilyMemberPageModule' }
+  { path: 'reg-family-member', loadChildren: './reg-family-member/reg-family-member.module#RegFamilyMemberPageModule' },
+  { path: 'reg', loadChildren: './reg/reg.module#RegPageModule' }
 
 ];
 

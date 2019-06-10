@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { AuthService } from './auth.service';
 import { LoadingController } from '@ionic/angular';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder , FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-auth',
@@ -11,12 +11,34 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./auth.page.scss']
 })
 export class AuthPage implements OnInit {
+// tslint:disable-next-line: max-line-length
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private loadingCtrl: LoadingController ,
+    private formBuilder: FormBuilder) {
+      this.LoginForm = formBuilder.group({
+        emailid: ['', [Validators.required]],
+        password: ['', [Validators.required]]
+      });
+
+  }
+  LoginForm: FormGroup;
   isLoading = false;
   isLogin = true;
-  constructor(private authService: AuthService, private router: Router, private loadingCtrl: LoadingController) {}
+  showSplash = true;
+  
+  errorMessages = {
+    emailid: [
+      { type: 'required', message: 'Email ID is required.' }
+    ],
+    password: [
+      { type: 'required', message: 'Password is required.' }
+    ]
+  };
   ngOnInit() {}
 
-  onLogin() {
+  onLogin() {                                                   // Loading Controller
     this.isLoading = true;
     this.authService.login();
     this.loadingCtrl
@@ -32,21 +54,27 @@ export class AuthPage implements OnInit {
 
 
   }
-  onSubmit(form: NgForm) {
+  onReg() {
+    this.router.navigateByUrl('/reg');
+  }
+  onSubmit() {
 
-    if (!form.valid) {
-      return;
-    }
-    const email = form.value.email;
-    const password = form.value.password;
+    if (this.LoginForm.invalid) {
+    } else {
+      this.authService.Login_reg(this.LoginForm.value)
+      .subscribe(
+        data => {
+          console.log('dtaaaaaaaa>>>>>>>:' + data);
+          console.log('this.LoginForm.value>>>>>>>>>>>>:', this.LoginForm.value);
+          this.LoginForm.reset();
+          this.router.navigate(['/dash/tabs/home']);
+        },
+        error => {
+          console.log('error>>>>>>>:' + error);
+        }
+      );
 
-    if (this.isLogin) {
-      // send a request to login server
     }
 
   }
-  /*onSignin() {
-    this.router.navigateByUrl('/reg-hsf');
-  }*/
-
 }
