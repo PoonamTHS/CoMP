@@ -10,7 +10,7 @@ export class AuthService {
 // tslint:disable-next-line: variable-name
  private _userIsAuthenticated = false;
  private url = 'http://healstationfoundation.org/';
- private apiurl = this.url + 'register_hsf.php';
+ private apiurl = this.url + 'testlogin.php';
 
  get userIsAuthenticated() {
    return this._userIsAuthenticated ;
